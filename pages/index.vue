@@ -1,28 +1,36 @@
 <template>
   <div class="container">
     <filmList :films="films" />
+
+        <AuthorizationMenuModal></AuthorizationMenuModal>
+        <AuthModal></AuthModal>
+        <RegModal></RegModal>
   </div>
 </template>
 
 <script>
 // import variables from '~/assets/scss/colors.scss'
 import { mapActions, mapGetters } from 'vuex'
-import filmList from '~/components/films/filmList.vue'
 
-  export default {
+import filmList from '@/components/films/filmList'
+import AuthorizationMenuModal from '@/components/modal/authentication/AuthorizationMenuModal'
+import AuthModal from '@/components/modal/authentication/AuthModal'
+import RegModal from '@/components/modal/authentication/RegModal'
+
+export default {
+    components: {
+        AuthorizationMenuModal, filmList, AuthModal, RegModal
+    },
     async mounted() {
       // console.log("VAR:", variables.primaryColor);
       await this.fetchFilms();
 
-      console.log(this.$route.query.modal);
+      // console.log(this.$route.query.modal);
       if(this.$route.query.modal) {
-        console.log("Query modal");
         this.$modal.show(this.$route.query.modal);
-        this.$modal.show('authmenu');
+        // this.$route.params = {};
+        // this.$modal.show('signin');
       }
-    },
-    components: {
-      filmList
     },
     methods: {
       ...mapActions({

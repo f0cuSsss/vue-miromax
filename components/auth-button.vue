@@ -4,7 +4,7 @@
             <span>Увійти</span>
         </button>
 
-        <AuthorizationMenuModal></AuthorizationMenuModal>
+        <!-- <AuthorizationMenuModal></AuthorizationMenuModal> -->
     </div>
 </template>
 

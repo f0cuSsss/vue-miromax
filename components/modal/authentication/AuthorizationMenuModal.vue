@@ -6,8 +6,17 @@
         <template #content>
             <span class="preview-text secondary-text">Увійдіть або створіть акаунт, використовуючи email.</span>
             <div class="buttons">
-                <ActionButton bgColor="#CE58E7" fontColor="#fff" title="Увійти"></ActionButton>
-                <ActionButton title="Створити аккаунт"></ActionButton>
+                <ActionButton 
+                    gradient
+                    fontColor="#fff" 
+                    title="Увійти"
+                    @click="handlerSignIn"
+                ></ActionButton>
+
+                <ActionButton 
+                    title="Створити аккаунт"
+                    @click="handlerCreateAccount"
+                ></ActionButton>
             </div>
             <div class="another-actions">
                 <span class="another-actions__title">або авторизуйтесь через:</span>
@@ -32,7 +41,18 @@ import TemplateAuthModal from '@/components/modal/authentication/TemplateAuthMod
 import ActionButton from '@/components/modal/authentication/ActionButton'
 export default {
     components: { TemplateAuthModal, ActionButton },
-    mounted() {}
+    methods: {
+        displayNewModal(ModalName) {
+            this.$modal.hide('authmenu');
+            this.$modal.show(ModalName);
+        },
+        handlerSignIn() {
+            this.displayNewModal('signin');
+        },
+        handlerCreateAccount() {
+            this.displayNewModal('signup');
+        }
+    }
 }
 </script>
 

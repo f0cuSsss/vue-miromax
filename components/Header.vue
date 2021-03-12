@@ -1,33 +1,9 @@
 <template>
   <header class="header">
       <div class="actions-block">
-        <HamburgerMenu>
-            <template #header>
-                <logo />
-                <drop-button :iconPath="require('../assets/images/miromax/outline-place-40px.svg')">
-                    <template #title>Київ, ТРЦ Аладдін</template>
-                    <template #data>
-                        <h5>Київ, ТРЦ Аладдін</h5>
-                        <h5>Другой город</h5>
-                    </template>
-                </drop-button>
-            </template>
-
-            <template #content>
-                <h2>Content</h2>
-            </template>
-        </HamburgerMenu>
-
-        <logo />
-        <drop-button
-            :iconPath="require('../assets/images/miromax/outline-place-40px.svg')"
-            :data="places"
-        >
-            <template #imageBefore>
-                <!-- <span v-html="calendarLogo"></span> -->
-                <span>X</span>
-            </template>
-        </drop-button>
+        <TopSlideMenu />
+        <Logo />
+        <EmporiumDropdown />
         <MiromaxApp />
       </div>
       <div class="actions-block">
@@ -47,27 +23,25 @@
               ></drop-button>
           </div>
           <div class="action__item">
-            <sidebar-button :iconPath="require('../assets/images/twotone-closed_caption-24px.svg')">
-                <!-- <template #title>Розклад: 33 Сеанси</template> -->
-                <template #seances><nobr>33</nobr></template>
-            </sidebar-button>
+            <RightSlideMenu />
           </div>
           <div class="action__item">
-            <auth-button></auth-button>
+            <auth-button />
           </div>
       </div>
   </header>
 </template>
 
 <script>
-import HamburgerMenu from '@/components/menu/HamburgerMenu'
 import dButton from './drop-button.vue'
 import choosemoviesButton from './choosemovies-button.vue'
-import logo from '@/components/logo'
-import calendarLogo from '../assets/images/miromax/outline-place-40px.svg?raw'
+import Logo from '@/components/Logo'
+import EmporiumDropdown from '@/components/EmporiumDropdown'
+import TopSlideMenu from '@/components/menu/TopSlideMenu'
+import RightSlideMenu from '@/components/menu/RightSlideMenu'
 
 export default {
-    components: { HamburgerMenu, dButton, logo, choosemoviesButton },
+    components: { dButton, Logo, choosemoviesButton, EmporiumDropdown, TopSlideMenu, RightSlideMenu },
     methods: {
         displayMenu(e) {
             this.$refs.menu.classList.toggle('expanded');
@@ -75,8 +49,7 @@ export default {
     },
     data() {
         return {
-            calendarData: ['Сьогодні, 25 Серпня', 'Завтра, 26 Серпня', 'Четверг, 27 Серпня', 'П\'ятниця, 28 Серпня', 'Субота, 29 Серпня', 'Неділя, 30 Серпня'],
-            places: ['Київ, ТРЦ Аладдін', 'Тернопіль, ТРЦ Подоляни']
+            calendarData: ['Сьогодні, 25 Серпня', 'Завтра, 26 Серпня', 'Четверг, 27 Серпня', 'П\'ятниця, 28 Серпня', 'Субота, 29 Серпня', 'Неділя, 30 Серпня']
         }
     }
 }

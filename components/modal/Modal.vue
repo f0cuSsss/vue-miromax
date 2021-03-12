@@ -37,7 +37,7 @@ export default {
         }
     },
     beforeMount() {
-        console.log(this.$modal.$event);
+        // console.log(this.$modal.$event);
         this.$modal.$event.$on('show', (modal, params) => {
             this.params = params;
             return this.name === modal ? (this.visible = true) : null;
@@ -84,10 +84,10 @@ export default {
             box-shadow: 0px 7px 20px -8px #9091a8;
             padding: 20px;
 
-            max-width: 60%;
+            max-width: 80%;
             min-width: 300px;
 
-            max-height: 75%;
+            max-height: 90%;
             min-height: 350px;
 
             .modal-inner__header {

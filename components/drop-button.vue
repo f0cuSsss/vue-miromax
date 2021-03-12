@@ -120,7 +120,7 @@ import ExpandIcon from "~/assets/images/dropdown/expand_more-24px.svg?inline";
 
             &:hover  {
                 cursor: pointer;
-
+                
                 .hover-wrapper {
                     img {
                         fill: $color_1;
@@ -204,10 +204,10 @@ import ExpandIcon from "~/assets/images/dropdown/expand_more-24px.svg?inline";
                     font-size: 17px;
                     font-weight: 400;
                     transition: all 0.3s ease-in-out;
-                        &:hover {
-                            background-color: $color_2;
-                            transition: all 0.3s ease-in-out;
-                        }
+                    &:hover {
+                        background-color: $color_2;
+                        transition: all 0.3s ease-in-out;
+                    }
                     &.active {
                         color: $accent;
                         text-decoration: underline;

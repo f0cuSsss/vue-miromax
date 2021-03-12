@@ -12,6 +12,7 @@
         justify-content: center;
         align-items: center;
         background-color: $accent !important;
+        background: linear-gradient(to top left, $accent, $accent_2);
         border-radius: 24px;
         padding: 12px;
         font-size: 17px;

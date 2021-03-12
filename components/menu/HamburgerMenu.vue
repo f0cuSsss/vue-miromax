@@ -7,17 +7,25 @@
         </div>
 
         <div ref="menu" class="menu " @click.prevent="displayMenu"> 
-            <div class="menu__inner" @click="(e) => e.stopPropagation()">
-                <div class="menu__inner__header">
-                    <button 
-                        class="menu__close"
-                        @click.prevent="displayMenu"
-                    ></button>
+            <div class="menu__inner" @click.stop>
+                <div :style="{ width: '100%' }">
+                    <div class="menu__inner__header">
+                        <button 
+                            class="menu__close"
+                            @click.prevent="displayMenu"
+                        ></button>
 
-                    <slot name="header"></slot>    
+                        <slot name="header"></slot>    
+                    </div>
+                    <div class="menu__inner__content">
+                        <slot name="content"></slot>
+                    </div>
                 </div>
-                <div class="menu__inner__content">
-                    <slot name="content"></slot>
+                <div class="cashback-info">
+                    <h2 class="cashback-info__title">Miromax Більше разом з нами Ви отримуєте кешбек</h2>
+                    <span class="cashback-info__description">Зареєструйся, та отримуйте кешбек за квитки і попкорн, до 20% від витрат в наших кінотеатрах.</span>
+                    <ActionButton massiveShadow title="Зареєструватися"/>
+                    <nuxt-link class="cashback-info__loyalty-program" to="">Про програму лояльності</nuxt-link>
                 </div>
             </div>
         </div>
@@ -25,7 +33,10 @@
 </template>
 
 <script>
+import ActionButton from '@/components/modal/authentication/ActionButton'
+
 export default {
+    components: { ActionButton },
     methods: {
         displayMenu(e) {
             this.$refs.menu.classList.toggle('expanded');
@@ -110,12 +121,14 @@ export default {
 
         .menu__inner {
             background-color: $color_1;
-            box-shadow: 0px 60px 115px 25px #565656;
+            box-shadow: 0px 50px 100px -20px $color_9;
             border-bottom-left-radius: 20px;
             border-bottom-right-radius: 20px;
             width: 100vw;
             height: 700px;
             z-index: 51;
+            display: flex;
+            justify-content: space-between;
 
             &__header {
                 display: flex;
@@ -147,6 +160,41 @@ export default {
 
             &__content {
                 padding: 10px;
+                position: relative;
+                height: calc(100% - 105px);
+            }
+        }
+
+        .cashback-info {
+            background: linear-gradient(to bottom right, $accent, $accent_2);
+            height: 100%;
+            max-width: 460px;
+            padding: 150px 50px;
+            color: $color_1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            &__title {
+                font-size: 34px;
+                font-weight: 700;
+                margin-bottom: 30px;
+            }
+
+            &__description {
+                font-size: 17px;
+                font-weight: 400;
+                display: inline-block;
+                margin-bottom: 46px;
+                line-height: 32px;
+            }
+
+            &__loyalty-program {
+                font-size: 17px;
+                font-weight: 400;
+                color: $color_1;
+                display: inline-block;
+                margin: 20px auto;
             }
         }
     }

@@ -4,7 +4,7 @@ export const actions = {
         const films = response.data.data;
 
         // console.log(console.log(JSON.parse(JSON.stringify(films[2]))));
-        console.log(films);
+        // console.log(films);
 
         commit('setFilms', films);
     }

@@ -1,7 +1,11 @@
 <template>
   <button 
     class="action-button"
+    :class="[
+        gradient ? 'action-button--gradient' : '',
+        massiveShadow ? 'action-button--massive-shadow' : '']"
     :style="{ 'background-color': bgColor, 'color': fontColor }"
+    @click.prevent="$emit('click')"
   >{{ title }}</button>
 </template>
 
@@ -21,6 +25,14 @@ export default {
             type: String,
             default: '#000067'
         },
+        gradient: {
+            type: Boolean,
+            default: false
+        },
+        massiveShadow: {
+            type: Boolean,
+            default: false
+        }
     }
 }
 </script>
@@ -42,6 +54,14 @@ export default {
         &:hover {
             transition: all 0.20s ease-in-out;
             box-shadow: none;
+        }
+
+        &--gradient {
+            background: linear-gradient(to right, $accent, $accent_2);
+        }
+
+        &--massive-shadow {
+            box-shadow: 0px 7px 20px 0px #000;
         }
     }
 </style>
