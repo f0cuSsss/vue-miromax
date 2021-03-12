@@ -1,32 +1,22 @@
 <template>
   <header class="header">
       <div class="actions-block">
-        <div class="burger-menu" @click.prevent="displayMenu">
-            <div class="menu-icon">
-                <span class="center-line"></span>
-            </div>
-        </div>
+        <HamburgerMenu>
+            <template #header>
+                <logo />
+                <drop-button :iconPath="require('../assets/images/miromax/outline-place-40px.svg')">
+                    <template #title>Київ, ТРЦ Аладдін</template>
+                    <template #data>
+                        <h5>Київ, ТРЦ Аладдін</h5>
+                        <h5>Другой город</h5>
+                    </template>
+                </drop-button>
+            </template>
 
-        <div ref="menu" class="menu " @click.prevent="displayMenu"> 
-            <div class="menu__inner" @click="(e) => e.stopPropagation()">
-                <div class="menu__header">
-                    <button 
-                        class="menu__close"
-                        @click.prevent="displayMenu"
-                    ></button>
-
-                    <logo />
-
-                    <drop-button :iconPath="require('../assets/images/miromax/outline-place-40px.svg')">
-                        <template #title>Київ, ТРЦ Аладдін</template>
-                        <template #data>
-                            <h5>Київ, ТРЦ Аладдін</h5>
-                            <h5>Другой город</h5>
-                        </template>
-                    </drop-button>
-                </div>
-            </div>
-        </div>
+            <template #content>
+                <h2>Content</h2>
+            </template>
+        </HamburgerMenu>
 
         <logo />
         <drop-button
@@ -70,13 +60,14 @@
 </template>
 
 <script>
+import HamburgerMenu from '@/components/menu/HamburgerMenu'
 import dButton from './drop-button.vue'
 import choosemoviesButton from './choosemovies-button.vue'
 import logo from '@/components/logo'
 import calendarLogo from '../assets/images/miromax/outline-place-40px.svg?raw'
 
 export default {
-    components: { dButton, logo, choosemoviesButton },
+    components: { HamburgerMenu, dButton, logo, choosemoviesButton },
     methods: {
         displayMenu(e) {
             this.$refs.menu.classList.toggle('expanded');
@@ -104,118 +95,6 @@ export default {
         // padding: 16px 32px;
         padding: 16px;
         position: relative;
-    }
-
-    .burger-menu {
-        padding: 15px;
-        
-        transition: all 0.20s ease-in-out;
-
-        &:hover {
-            cursor: pointer;
-            .center-line {
-                // width: 70%;
-                transform: scaleX(0.6);
-                transition: all 0.20s ease-in-out;
-            }
-        }
-
-        .menu-icon {
-            display: block;
-            position: relative;
-            width: 26px;
-            height: 20px;
-
-            .center-line {
-                background-color: #000464;
-                float: left;
-                position: absolute;
-                width: 100%;
-                height: 3px;
-                border-radius: 15px;
-                left: 0;
-                top: 9px;
-                transition: all 0.20s ease-in-out;
-            }
-
-            &::before, 
-            &::after {
-                content: '';
-                background-color: #000464;
-                border-radius: 15px;
-                position: absolute;
-                width: 100%;
-                height: 3px;
-                left: 0;
-            }
-
-            &::before {
-                top: 0;
-            }
-
-            &::after {
-                bottom: 0;
-            }
-        }
-
-    }
-
-
-    .menu {
-        // background-color: rgba(216, 216, 216, 0.349);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        
-        transform: translateY(-100%);
-        z-index: 50;
-        transition: all 0.4s ease-in-out;
-        opacity: 0;
-        &.expanded {
-            opacity: 1;
-            transform: translateY(0);
-            transition: all 0.4s ease-in-out;
-        }
-
-        .menu__inner {
-            background-color: $color_1;
-            box-shadow: 0px 60px 115px 25px #565656;
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
-            width: 100vw;
-            height: 700px;
-            z-index: 51;
-
-            .menu__header {
-                display: flex;
-                align-items: center;
-                padding: 10px 0;
-                    .menu__close {
-                        background: url('@/assets/images/close-24px.svg') no-repeat;
-                        border-radius: 50%;
-                        cursor: pointer;
-                        background-color: $color_2;
-                        margin: 25px;
-                        padding: 5px;
-
-                        color: $color_4;
-                        width: 35px;
-                        height: 35px;
-                        background-size: contain;
-
-                        transition: all 0.4s ease-in-out;
-
-                        &:hover {
-                            background-color: $color_4;
-                            color: $color_1;
-                            fill: red;
-                            transition: all 0.4s ease-in-out;
-                        }
-                    }
-            }
-        }
     }
 
 
