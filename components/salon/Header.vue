@@ -61,7 +61,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scope>
+<style lang="scss">
 
     .burger-menu {
         padding: 15px;

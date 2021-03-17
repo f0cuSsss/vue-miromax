@@ -44,12 +44,17 @@ export default {
         font-weight: 600;
         padding: 19px 24px;
         width: 100%;
+        transition: all 0.1s ease-in-out;
 
         &::placeholder {
             color: #000;
         }
 
         &:focus {
+            border-radius: 4px;
+            box-shadow: 1px 4px 4px -2px #cccccc;
+            background-color: rgba($color_2, 0.6);
+            transition: all 0.1s ease-in-out;
             outline: none;
         }
         

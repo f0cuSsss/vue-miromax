@@ -26,13 +26,16 @@
             <RightSlideMenu />
           </div>
           <div class="action__item">
-            <auth-button />
+            <auth-button v-if="!checkAuth" />
+            <logout-button v-else />
           </div>
       </div>
   </header>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import dButton from './drop-button.vue'
 import choosemoviesButton from './choosemovies-button.vue'
 import Logo from '@/components/Logo'
@@ -51,6 +54,11 @@ export default {
         return {
             calendarData: ['Сьогодні, 25 Серпня', 'Завтра, 26 Серпня', 'Четверг, 27 Серпня', 'П\'ятниця, 28 Серпня', 'Субота, 29 Серпня', 'Неділя, 30 Серпня']
         }
+    },
+    computed: {
+        ...mapGetters({
+            checkAuth: 'user/userIsLoggedIn'
+        })
     }
 }
 </script>

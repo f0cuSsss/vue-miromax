@@ -14,14 +14,24 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 import AuthorizationMenuModal from '@/components/modal/authentication/AuthorizationMenuModal'
 import AuthModal from '@/components/modal/authentication/AuthModal'
 import RegModal from '@/components/modal/authentication/RegModal'
 
 export default {
-    components: {
-        AuthorizationMenuModal, AuthModal, RegModal
-    },
+  mounted() {
+    this.parseToken();
+  },
+  components: {
+      AuthorizationMenuModal, AuthModal, RegModal
+  },
+  methods: {
+    ...mapActions({
+      parseToken: 'user/parseToken'
+    })
+  }
 }
 </script>
 
