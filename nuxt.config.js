@@ -15,7 +15,7 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      // { rel='stylesheet', href='https://fonts.googleapis.com/css?family=Montserrat' }
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap' }
     ],
   },
 
@@ -25,7 +25,7 @@ export default {
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: '@/plugins/modal' }],
+  plugins: [{ src: '@/plugins/modal' }, { src: '@/plugins/array' }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -66,16 +66,16 @@ export default {
   //   },
   // },
 
-  googleFonts: {
-    families: {
-      Roboto: true,
-      'Josefin+Sans': true,
-      Lato: [100, 300],
-      Raleway: {
-        wght: [100, 400],
-        ital: [100]
-      },
-      Montserrat: [400, 600, 700]
-    }
-  }
+  // googleFonts: {
+  //   families: {
+  //     Roboto: true,
+  //     'Josefin+Sans': true,
+  //     Lato: [100, 300],
+  //     Raleway: {
+  //       wght: [100, 400],
+  //       ital: [100]
+  //     },
+  //     Montserrat: [400, 600, 700]
+  //   }
+  // }
 }

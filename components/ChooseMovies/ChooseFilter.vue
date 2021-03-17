@@ -6,12 +6,14 @@
         </div>
 
         <div v-if="items.length > 0" class="filter-list">
-            <div class="filter-list__item">
-                <span 
-                    class="filter-list__item__name"
-                    v-for="filter in items"
-                    :key="filter.name"
-                >filter.name</span>
+            <div 
+                class="filter-list__item"
+                v-for="filter in items"
+                :key="filter.id"
+                :class="filter.checked ? 'active' : ''"
+                @click="$emit('checkItem', filter)"
+            >
+                <span class="filter-list__item__name">{{ filter.name + ' (' + filter.count + ')' }}</span>
             </div>
         </div>
         <span class="error-load-filters" v-else>Can't load filter list</span>
@@ -19,6 +21,7 @@
 </template>
 
 <script>
+
 export default {
     props: {
         beforeImage: {
@@ -34,14 +37,8 @@ export default {
             required: true
         }
     },
-    data() {
-        return {
-            filters: {
-                genres: Array,
-                format: Array,
-                events: Array
-            }
-        }
+    watch: {
+        items() {}
     }
 }
 </script>
@@ -59,6 +56,7 @@ export default {
 
     .filter {
         margin-top: 15px;
+        cursor: pointer;
 
         &__header {
             display: flex;
@@ -98,8 +96,9 @@ export default {
             flex-wrap: wrap;
             &__item {
                 border: 1px solid $color_7;
-                border-radius: 10px;
+                border-radius: 16px;
                 padding: 11px 24px;
+                margin: 5px;
 
                 &__name {
                     // $name: &;
@@ -113,7 +112,7 @@ export default {
 
                 &.active {
                     background-color: $accent;
-
+                    color: $color_1;
                     // #{$name} {
                     //     %item-presudo {
                     //         width: 18px;

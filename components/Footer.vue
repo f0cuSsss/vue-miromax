@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="info-block">
-          <span class="copyright">© 2020 Miromax. Всі права захищено.</span>
+          <span class="miromax-copyright">© 2020 Miromax. Всі права захищено.</span>
           <div class="dev">
               <span>By</span>
               <img src="../assets/images/Sign_Tangram_Studio.svg" alt="Tangram studio">
@@ -46,7 +46,7 @@ export default {
         align-items: center;
     }
 
-    .copyright {
+    .miromax-copyright {
         color: #7F7F8A;
         font-weight: 400;
         font-size: 14px;

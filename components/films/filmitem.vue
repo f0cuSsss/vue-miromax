@@ -19,11 +19,12 @@
               <div class="film_sessions-list">
                   <div 
                     class="film__session"
-                    v-for="event in film.events"
+                    v-for="event in film.events.slice(cur_part - swipe_part, cur_part)"
                     :key="event.id"
                   >
                       <h3 class="film__session--time">{{ event.start_datetime | dateParser }}</h3>
                       <div class="film__session-places">
+                          
                         <div 
                             class="film__session--place"
                             v-for="price in event.prices"
@@ -35,6 +36,7 @@
                               <span class="session-price--currency">грн</span>
                           </div>
                         </div>
+
                       </div>
                   </div>
               </div>
@@ -42,12 +44,19 @@
               <div v-if="film.events.length > 4" class="film__sessions-slider">
                   <h4 class="film__sessions-slider--title">Наступні сеанси</h4>
                     <div class="sessions-slider__actions">
-                        <button class="slider-button slider-back__button"></button>
-                        <button class="slider-button slider-next__button"></button>
+                        <button 
+                            class="slider-button slider-back__button"
+                            :class="cur_page === 1 ? 'disabled' : ''"
+                            @click="prevSlide"
+                        ></button>
+                        <button 
+                            class="slider-button slider-next__button"
+                            :class="(cur_page === Math.ceil(film.events.length / swipe_part)) ? 'disabled' : ''"
+                            @click="nextSlide"
+                        ></button>
                     </div>
               </div>
           </div>
-
       </div>
   </div>
 </template>
@@ -55,16 +64,36 @@
 <script>
 import dateParser from '@/filters/dateParser'
 export default {
+    mounted() {
+        this.cur_part = this.swipe_part;
+    },
     props: {
         film: {
             type: Object
         }
     },
-    // filters: {
-    //     filterDate(value) {
-    //         return new Date(value).toLocaleTimeString('en-GB', {hour: '2-digit', minute:'2-digit'});
-    //     }
-    // }
+    data: () => ({
+        cur_page: 1,
+        cur_part: 0,
+        swipe_part: 4
+    }),
+    methods: {
+        prevSlide() {
+            if(this.cur_page != 0) {
+                this.cur_page--;
+                this.calcPart();
+            }
+        },
+        nextSlide() {
+            if(this.cur_page < (this.film.events.length / 4)) {
+                this.cur_page++;
+                this.calcPart();
+            }
+        },
+        calcPart() {
+            this.cur_part = this.swipe_part * this.cur_page;
+        }
+    }
 }
 </script>
 
@@ -91,6 +120,7 @@ export default {
 
         .film__content {
             padding: 40px 10px;
+            margin-top: 40px;
             padding-right: 40px;
             display: flex;
             flex-direction: column;
@@ -220,6 +250,7 @@ export default {
                     .slider-button {
                         background-color: $color_1;
                         border-radius: 50%;
+                        cursor: pointer;
                         width: 40px;
                         height: 40px;
                         padding: 5px;
@@ -230,6 +261,15 @@ export default {
                         justify-content: center;
                         align-items: center;
                
+                        &:hover {
+                            background-color: $accent;
+                        }
+
+                        &.disabled {
+                            cursor: not-allowed;
+                            pointer-events: none;
+                            background-color: rgba($color_1, 0.5);
+                        }
                     }
 
                     .slider-back__button {

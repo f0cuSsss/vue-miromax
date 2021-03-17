@@ -7,8 +7,8 @@
             <span>Розклад: <slot name="seances"></slot> Сеанси</span>
         </div>
 
-        <div ref="sidebarMenu" class="sidebar-menu">
-            <div class="sidebar-menu__inner">
+        <div ref="sidebarMenu" class="sidebar-menu" @click.prevent="handleDisplaySidebar" >
+            <div class="sidebar-menu__inner" @click.stop.prevent>
                 <div class="sidebar__header">
                     <h3 class="sidebar__header--title">Розклад сеансів Київ, ТРЦ Аладдин: <span>33 Сеанси</span></h3>
                     <div class="sidebar__header--video-formats">
@@ -94,7 +94,6 @@
 
             <button 
                 class="sidebar__close-button"
-                @click.prevent="handleDisplaySidebar"
             ></button>
 
         </div>
@@ -129,7 +128,17 @@ export default {
     },
     methods: {
         handleDisplaySidebar(status = false) {
-            this.$refs.sidebarMenu.classList.toggle('expanded');
+            // status 
+            //     ? (this.$refs.sidebarMenu.classList.remove('expanded')) 
+            //     : (this.$refs.sidebarMenu.classList.toggle('expanded'));
+
+            this.$refs.sidebarMenu.classList.toggle('expanded')
+
+            let doc = document.body;
+
+            doc.style.overflow === 'hidden'
+                ? doc.style.removeProperty('overflow') 
+                : doc.style.setProperty('overflow', 'hidden');
         },
         setActiveDay(day) {
             this.activeDay = day;

@@ -24,7 +24,7 @@
                 <div class="cashback-info">
                     <h2 class="cashback-info__title">Miromax Більше разом з нами Ви отримуєте кешбек</h2>
                     <span class="cashback-info__description">Зареєструйся, та отримуйте кешбек за квитки і попкорн, до 20% від витрат в наших кінотеатрах.</span>
-                    <ActionButton massiveShadow title="Зареєструватися"/>
+                    <ActionButton massiveShadow title="Зареєструватися" @click="$modal.show('signup')" />
                     <nuxt-link class="cashback-info__loyalty-program" to="">Про програму лояльності</nuxt-link>
                 </div>
             </div>
@@ -103,7 +103,7 @@ export default {
 
     .menu {
         // background-color: rgba(216, 216, 216, 0.349);
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
         width: 100vw;

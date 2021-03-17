@@ -1,8 +1,8 @@
 <template>
-  <h1 class="no-have-films" v-if="films.length === 0">Не можу знайти фільми :(</h1>
+  <!-- <h1 class="no-have-films" v-if="films.length === 0">Не можу знайти фільми :(</h1> -->
   
   <div 
-    v-else
+    v-if="!isFilmsLoading"
     class="films-list"
   >
       <film
@@ -11,10 +11,15 @@
         :film="film"
       />
   </div>
+
+  <Loader v-else />
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import film from '@/components/films/filmitem'
+import Loader from '@/components/loaders/Loader'
 
 export default {
   props: {
@@ -23,7 +28,15 @@ export default {
       default: () => []
     }
   },
-  components: { film }
+  components: { film, Loader },
+  computed: {
+    ...mapGetters({
+      isFilmsLoading: 'films/getLoadingStatus'
+    })
+  },
+  // watch: {
+  //   isFilmsLoading() {}
+  // }
 }
 </script>
 

@@ -23,6 +23,7 @@
   </button>
 
   <div v-if="data.length > 1" ref="dropdownMenu" class="dropdown__menu" >
+     <div class="top-tria"></div>
      <ul class="dropdown__datalist">
       <li
         v-for="item in data"
@@ -171,6 +172,13 @@ import ExpandIcon from "~/assets/images/dropdown/expand_more-24px.svg?inline";
             }
         }
 
+        .top-tria {
+            @include css-triangle(top, $color_1, 10px, 20px);
+                top: -10px;
+                right: 10px;
+                position: absolute;
+        }
+
         .dropdown__menu {
             background-color: $color_1;
             border-radius: 15px;
@@ -179,7 +187,7 @@ import ExpandIcon from "~/assets/images/dropdown/expand_more-24px.svg?inline";
             position: absolute;
             top: 125%;
             left: 0;
-            overflow: hidden;
+            // overflow: hidden;
             width: 100%;
             z-index: 2;
             height: auto;

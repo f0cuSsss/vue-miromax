@@ -67,7 +67,9 @@ export default {
         opacity: 1;
         // padding: 16px 32px;
         padding: 16px;
-        position: relative;
+        position: fixed;
+        width: 100%;
+        z-index: 1;
     }
 
 

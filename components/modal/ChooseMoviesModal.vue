@@ -9,23 +9,12 @@
 
                     <div class="choose-movie__filter-row">
                         <div class="choose-movie__filter-column">
-                            <ChooseFilter
-                                :beforeImage="require('@/assets/images/GLasses-24px.svg')" 
-                                title="Жанр" 
-                                :items="[]" 
-                            />
+                            <!-- <ChooseGenres :genres="parsedFilmTypes()" /> -->
+                            <ChooseGenres />
                         </div>
                         <div class="choose-movie__filter-column">
-                            <ChooseFilter
-                                :beforeImage="require('@/assets/images/outline-movie_creation-24px.svg')"
-                                title="Формат, LUX" 
-                                :items="[]" 
-                            />
-                            <ChooseFilter
-                                :beforeImage="require('@/assets/images/outline-new_releases-24px.svg')" 
-                                title="Події" 
-                                :items="[]" 
-                            />
+                            <!-- <ChooseFormats :formats="parsedFilmFormats()" />
+                            <ChooseEvents :events="parsedFilmEvents()" /> -->
                         </div>
                     </div>
 
@@ -43,8 +32,65 @@
 </template>
 
 <script>
-export default {
+import { mapGetters, mapActions } from 'vuex'
 
+export default {
+    methods: {
+        // ...mapActions({
+        //     fetchGenres: 'filters/fetchGenres'
+        // }),
+        // ...mapGetters({
+        //     getFilms: 'films/films'
+        // }),
+        // parsedFilmTypes() {
+        //     let parsedTypes = [];
+        //     if(!this.getFilms()) return parsedTypes;
+
+        //     this.getFilms().forEach(film => {
+        //         film.types.forEach(type => {
+        //             if(parsedTypes.some(pt => pt.id === type.id)) {
+        //                 parsedTypes.forEach(t => {
+        //                     if(t.id === type.id) {
+        //                         t.count++;
+        //                     }
+        //                     t = Object.assign(t, t['checked'] = false);
+        //                 });
+        //             } else {
+        //                 parsedTypes.push({ id: type.id, name: type.name, count: 1 });
+        //             }
+        //         });
+        //     });
+
+        //     return parsedTypes;
+        // },
+        // parsedFilmFormats() {
+        //     let parsedFormats = [];
+        //     if(!this.getFilms()) return parsedFormats;
+
+        //     this.getFilms().forEach(film => {
+        //         if(parsedFormats.some(f => f.name === film.format)) {
+        //             parsedFormats.forEach(t => {
+        //                 if(t.name === film.format) {
+        //                     t.count++;
+        //                 }
+        //                 t = Object.assign(t, t['checked'] = false);
+        //             });
+        //         } else {
+        //             if(film.format)
+        //                 parsedFormats.push({ name: film.format, count: 1 });
+        //         }
+        //     });
+
+        //     return parsedFormats;
+        // },
+        // parsedFilmEvents() {
+        //     let parsedEvents = [];
+        //     if(!this.getFilms()) return parsedEvents;
+
+
+        //     return parsedEvents;
+        // }
+    }
 }
 </script>
 
@@ -114,6 +160,7 @@ export default {
                 &--apply {
                     @extend %filter-button;
                     background-color: $accent;
+                    background: linear-gradient(to right, $accent, $accent_2);
                     color: $color_1;
                 }
             }
