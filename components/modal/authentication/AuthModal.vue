@@ -81,7 +81,7 @@ export default {
             }
 
             try {
-                await this.doLogin({ email: this.login, password: this.password });
+                await this.doLogin({ emailOrPhone: this.login, password: this.password });
             } catch(e) {
                 alert(e.status)
             }

@@ -1,14 +1,31 @@
+import { validEmail, validPhone } from '@/utils/validators'
 
 export const actions = {
     async login({ commit }, userData) {
 
       let response;
       try{
-        response = await this.$axios.post('https://miromax-two.docker.tangram.biz/api/auth/login',
-            {
-                email: userData.email,
-                password: userData.password
-            }
+
+        let payload = {}
+
+        if(validEmail(userData.emailOrPhone)) {
+            payload['email'] = userData.emailOrPhone;
+            console.log("It's email");
+        } 
+        else if(validPhone(userData.emailOrPhone)) {
+            payload['phone'] = userData.emailOrPhone;
+            console.log("It's phone");
+        } 
+        else {
+            console.log("Error reg parse");
+            return;
+        };
+
+        payload['password'] = userData.password;
+        
+        response = await this.$axios.post(
+            'https://miromax-two.docker.tangram.biz/api/auth/login',
+            payload
         );
 
         console.log(response);

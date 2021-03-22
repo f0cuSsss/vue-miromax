@@ -108,7 +108,7 @@ export default {
     props: ['iconPath'],
     mounted() {
         this.activeDay = this.schedule_days[0].day;
-        console.log(this.films);
+        // console.log(this.films);
     },
     data() {
         return {
