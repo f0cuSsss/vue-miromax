@@ -14,11 +14,10 @@
         </template>
     </ToastBlock>
 
-    <!-- <notifications group="main" position="top center"/>
-    <notifications group="secondary" position="bottom right"/> -->
+
     <fc-notify group="main" position="top center" max="3" />
     <fc-notify group="secondary" position="bottom right" max="5" />
-    <fc-notify group="errors" position="top right" max="3" />
+    <!-- <fc-notify group="errors" position="top right" max="3" /> -->
     <fc-notify group="main-info" position="top center" center max="1"/>
   </div>
 </template>
