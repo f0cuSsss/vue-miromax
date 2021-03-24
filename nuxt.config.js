@@ -31,7 +31,8 @@ export default {
     { src: '@/plugins/toast' },
     { src: '@/plugins/dialog' },
     { src: '@/plugins/Vuelidate' },
-    { src: '@/plugins/axios' }
+    { src: '@/plugins/axios' },
+    { src: '@/plugins/vue-notification' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

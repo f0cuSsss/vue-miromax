@@ -142,7 +142,6 @@
             <p class="result">{{ tags }}</p>
         </div>
 
-
         <!-- Search select component -->
         <div class="custom-elements__item">
             <h3 class="custom-elements__item__title">Search select</h3>
@@ -151,6 +150,13 @@
                 :options="SelectOptions"
                 :filter-function="SearchSelectFilter"
             />
+            <p class="result">{{ selectedSelectValue }}</p>
+        </div>
+
+        <!-- Use vue-notification -->
+        <div class="custom-elements__item">
+            <h3 class="custom-elements__item__title">vue-notification</h3>
+            <button @click="showNotification">Show notification</button>
             <p class="result">{{ selectedSelectValue }}</p>
         </div>
 
@@ -209,6 +215,49 @@ export default {
             return options.filter(option =>
                 option.toLowerCase().startsWith(search.toLowerCase())
             )
+        },
+        showNotification() {
+            console.log("Trying to show vue-notification...");
+            this.$notify({
+                group: 'main',
+                type: 'success',
+                text: 'Operation successful',
+                duration: 1500,
+                speed: 1000
+            });
+
+            this.$notify({
+                group: 'secondary',
+                type: 'info',
+                text: 'You received a message',
+                duration: 1000,
+                speed: 1000
+            });
+
+            this.$notify({
+                group: 'secondary',
+                type: 'warn',
+                text: 'Warn message',
+                duration: 1000,
+                speed: 1000
+            });
+
+            this.$notify({
+                group: 'main',
+                type: 'error',
+                text: 'Please, try later...',
+                duration: 1000,
+                speed: 1000
+            });
+
+            this.$notify({
+                group: 'main-info',
+                type: 'main-info',
+                text: 'You must be logged in',
+                duration: 1000,
+                ignoreDuplicates: true,
+                speed: 300
+            });
         }
     },
     watch: {
